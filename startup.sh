@@ -291,4 +291,4 @@ fi
 
 echo
 echo '[READY]'
-test "$own_vm" -eq 0 && echo "You can now connect to the sandbox container by using: $ docker attach tf-developer-sandbox"
+echo "You can now connect to the sandbox container by using: $ docker attach tf-developer-sandbox"
