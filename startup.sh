@@ -213,8 +213,9 @@ if [ ! -e ${contrail_dir}/repo ] ; then
   echo "INFO: Download repo tool"
   curl -s https://storage.googleapis.com/git-repo-downloads/repo > ${contrail_dir}/repo
   chmod a+x ${contrail_dir}/repo
-  ${contrail_dir}/repo init --no-clone-bundle -q -u https://github.com/mrasskazov/contrail-vnc -b $VNC_BRANCH
-fi  
+fi
+
+${contrail_dir}/repo init --no-clone-bundle -q -u https://github.com/mrasskazov/contrail-vnc -b $VNC_BRANCH
 
 if ! is_created "tf-developer-sandbox"; then
   if [[ "$BUILD_TEST_CONTAINERS" == "1" ]]; then
