@@ -1,4 +1,4 @@
-FROM centos:7
+FROM centos:7.6.1810
 
 ARG LC_ALL=en_US.UTF-8
 ARG LANG=en_US.UTF-8
