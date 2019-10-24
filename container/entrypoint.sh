@@ -2,6 +2,7 @@
 set -eo pipefail
 
 CANONICAL_HOSTNAME=${CANONICAL_HOSTNAME:-"review.opencontrail.org"}
+export PATH=/root/contrail:${PATH}
 
 if [[ -d /config ]]; then
   cp -rf /config/* /
