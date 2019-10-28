@@ -259,6 +259,18 @@ if ! is_created "tf-developer-sandbox"; then
   volumes="-v /var/run/docker.sock:/var/run/docker.sock"
   volumes+=" -v ${scriptdir}:/root/tf-dev-env"
   volumes+=" -v ${scriptdir}/container/entrypoint.sh:/root/entrypoint.sh"
+
+  MODULES=($(ls /lib/modules))
+  for MOD in ${MODULES[@]}; do
+    DIR="/usr/src/linux-headers-${MOD}"
+    if [ -d "${DIR}" ]; then
+      volumes+=" -v ${DIR}:${DIR}"
+      volumes+=" -v ${DIR%-*}:${DIR%-*}"
+      M="/lib/modules/${MOD}"
+      volumes+=" -v ${M}:${M}"
+    fi
+  done
+
   if [[ -d "${scriptdir}/config" ]]; then
     volumes+=" -v ${scriptdir}/config:/config"
   fi
