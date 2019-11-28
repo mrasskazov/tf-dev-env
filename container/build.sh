@@ -1,6 +1,6 @@
 #!/bin/bash -e
 BRANCH=master
-IMAGE=opencontrail/developer-sandbox
+IMAGE=docker-test-local.docker.mirantis.net/tungsten-ci/developer-sandbox
 
 while getopts ":b:i:" opt; do
     case $opt in
@@ -14,7 +14,7 @@ done
 
 shift $((OPTIND-1))
 
-TAG=${1:-latest}
+TAG=${1:-R5.1}
 CONTRAIL_KEEP_LOG_FILES=${CONTRAIL_KEEP_LOG_FILES:-'false'}
 
 logfile="./build-tf-dev-env.log"
