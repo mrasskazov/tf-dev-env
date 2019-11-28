@@ -1,6 +1,6 @@
 #!/bin/bash
 
-REPODIR=${test_containers_builder_dir:-"/root/src/${CANONICAL_HOSTNAME}/Juniper/contrail-test"}
+REPODIR=${test_containers_builder_dir:-"/root/src/${CANONICAL_HOSTNAME}/tungsten/contrail-test"}
 
 source ${REPODIR}/common.env
 

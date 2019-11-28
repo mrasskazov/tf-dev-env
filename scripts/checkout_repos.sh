@@ -1,6 +1,6 @@
 #!/bin/bash -ue
 
-SRC_DIR=/root/src/${CANONICAL_HOSTNAME}/Juniper/
+SRC_DIR=/root/src/${CANONICAL_HOSTNAME}/tungsten/
 c_p_c_rev=c9524c72199
 c_z_j_rev=22aea96d23
 
@@ -11,7 +11,7 @@ function checkout() {
   local rev=${2:-master}
   local repopath=${SRC_DIR}/${repo}
 
-  test -d ${repopath} || git clone https://github.com/Juniper/${repo} ${repopath} >/dev/null 2>&1
+  test -d ${repopath} || git clone https://github.com/tungsten/${repo} ${repopath} >/dev/null 2>&1
   pushd ${repopath} >/dev/null
   git fetch origin >/dev/null
   echo -n "${repo}: "

@@ -5,7 +5,7 @@ SHELL=/bin/bash -o pipefail
 # include RPM-building targets
 -include $(TF_DE_TOP)contrail/tools/packages/Makefile
 
-repos_dir=$(TF_DE_TOP)src/${CANONICAL_HOSTNAME}/Juniper/
+repos_dir=$(TF_DE_TOP)src/${CANONICAL_HOSTNAME}/tungsten/
 container_builder_dir=$(repos_dir)contrail-container-builder/
 test_containers_builder_dir=$(repos_dir)contrail-test/
 ansible_playbook=ansible-playbook -i inventory --extra-vars @vars.yaml --extra-vars @dev_config.yaml
