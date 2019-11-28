@@ -28,7 +28,7 @@ done
 if [[ $remove_volume -eq 1 ]]; then
   echo
   echo '[volumes]'
-  volume_name=tf-dev-env-rpms
+  volume_name=tf-dev-env-rpm-volume
   if docker volume list --format '{{ .Name }}' | grep "$volume_name" >/dev/null; then
     echo $(docker volume rm $volume_name) removed.
   else
