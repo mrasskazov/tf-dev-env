@@ -9,6 +9,7 @@ setup_only=0
 own_vm=0
 IMAGE=${IMAGE:-"opencontrailnightly/developer-sandbox"}
 DEVENVTAG=${DEVENVTAG:-"latest"}
+VNC_BRANCH=${VNC_BRANCH:-"mcp/R5.1"}
 options="-e LC_ALL=en_US.UTF-8 -e LANG=en_US.UTF-8 -e LANGUAGE=en_US.UTF-8 "
 log_path=""
 
@@ -46,10 +47,6 @@ while getopts ":t:i:sb" opt; do
   esac
 done
 
-VNC_BRANCH="master"
-if [[ "$DEVENVTAG" != "latest" ]]; then
-  VNC_BRANCH="$DEVENVTAG"
-fi
 
 function is_created () {
   local container=$1
