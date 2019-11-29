@@ -12,6 +12,11 @@ if [[ -d /config ]]; then
   fi
 fi
 
+cd $HOME/contrail
+rm -rf .repo
+ln -s $HOME/.repo
+
+
 if [[ "${AUTOBUILD}" -eq 1 ]]; then
     cd $CONTRAIL_DEV_ENV
 
