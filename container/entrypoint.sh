@@ -68,8 +68,12 @@ if [[ "${AUTOBUILD}" -eq 1 ]]; then
     else
         echo "INFO: make create-repo prepare-containers prepare-deployers   $(date)"
         make -j 3 create-repo prepare-containers prepare-deployers 
-        echo "INFO: make container-general-base   $(date)"
+        make list-containers | sed -e 's/^container/contrail/' -e 's/_/-/g' > list-containers
+        make list-deployers | sed -e 's/^deployer/contrail/' -e 's/_/-/g' > list-deployers
+
+        echo "INFO: make container-general-base $(date)"
         make container-general-base
+
         echo "INFO: make containers-only deployers-only   $(date)"
         make -j 2 containers-only deployers-only
     fi
