@@ -8,7 +8,7 @@ mkdir -p ${SRC_DIR}
 
 function checkout() {
   local repo=$1
-  local rev=${2:-master}
+  local rev=${2:-mcp/R5.1}
   local repopath=${SRC_DIR}/${repo}
 
   test -d ${repopath} || git clone https://github.com/tungsten/${repo} ${repopath} >/dev/null 2>&1

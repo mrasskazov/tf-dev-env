@@ -1,5 +1,5 @@
 #!/bin/bash -e
-BRANCH=master
+BRANCH=mcp/R5.1
 IMAGE=docker-test-local.docker.mirantis.net/tungsten-ci/developer-sandbox
 
 while getopts ":b:i:" opt; do
