@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eo pipefail
 
-CANONICAL_HOSTNAME=${CANONICAL_HOSTNAME:-"review.opencontrail.org"}
+CANONICAL_HOSTNAME=${CANONICAL_HOSTNAME:-"gerrit.mcp.mirantis.net"}
 
 if [[ -d /config ]]; then
   cp -rf /config/* /
