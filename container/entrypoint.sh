@@ -20,10 +20,8 @@ ln -s $HOME/.repo
 if [[ "${AUTOBUILD}" -eq 1 ]]; then
     cd $CONTRAIL_DEV_ENV
 
-    if [[ "${SRC_MOUNTED}" != "1" ]]; then
-        echo "INFO: make sync  $(date)"
-        make sync
-    fi
+    echo "INFO: make sync  $(date)"
+    make sync
 
     echo "INFO: make setup  $(date)"
     make setup
