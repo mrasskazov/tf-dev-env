@@ -28,7 +28,7 @@ RUN mkdir -p $CONTRAIL && \
     yum clean all && \
     rm -rf /var/cache/yum && \
     echo "INFO: Initializing repo from $BRANCH" && \
-    repo init --no-clone-bundle -q -u https://github.com/Juniper/contrail-vnc -b $BRANCH && \
+    repo init --no-clone-bundle -q -u https://gerrit.mcp.mirantis.com/tungsten/contrail-vnc -b $BRANCH && \
     pip install --upgrade tox geventhttpclient && \
     echo export CONTRAIL=$CONTRAIL >> $HOME/.bashrc && \
     echo export LD_LIBRARY_PATH=$CONTRAIL/build/lib >> $HOME/.bashrc
