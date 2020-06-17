@@ -102,6 +102,18 @@ if ! is_container_created "$DEVENV_CONTAINER_NAME"; then
   volumes+=" -v ${WORKSPACE}/output:/output:${DOCKER_VOLUME_OPTIONS}"
   volumes+=" -v ${input_dir}:/input:${DOCKER_VOLUME_OPTIONS}"
   volumes+=" -v ${scriptdir}/config:/config:${DOCKER_VOLUME_OPTIONS}"
+
+  MODULES=($(ls /lib/modules))
+  for MOD in ${MODULES[@]}; do
+    DIR="/usr/src/linux-headers-${MOD}"
+    if [ -d "${DIR}" ]; then
+      volumes+=" -v ${DIR}:${DIR}"
+      volumes+=" -v ${DIR%-*}:${DIR%-*}"
+      M="/lib/modules/${MOD}"
+      volumes+=" -v ${M}:${M}"
+    fi
+  done
+
   # Provide env variables because:
   #  - there is backward compatibility case with manual doing docker exec
   #  into container and user of make.
