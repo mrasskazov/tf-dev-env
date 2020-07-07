@@ -23,16 +23,20 @@ repo_sync_defauilts='--no-tags --no-clone-bundle -q'
 
 
 REPO_INIT_MANIFEST_URL=${REPO_INIT_MANIFEST_URL:-${CONTRAIL_FETCH_REPO}}
-if [[ -n "$CONTRAIL_BRANCH" ]] ; then
-  # reset branch to master if no such branch in vnc: openshift-ansible,
-  # contrail-tripleo-puppet, contrail-trieplo-heat-templates do not 
-  # depend on contrail branch and are openstack depended.
-  if ! curl -s https://gerrit.mcp.mirantis.com/projects/tungsten%2Fcontrail-vnc/branches | grep '"ref"' | grep -q "${CONTRAIL_BRANCH}" ; then
-    echo "Ther is no $CONTRAIL_BRANCH branch in contrail-vnc, use master for vnc"
-    CONTRAIL_BRANCH="master"
-    GERRIT_BRANCH=""
-  fi
-fi
+CONTRAIL_BRANCH=${CONTRAIL_BRANCH:-${GERRIT_BRANCH}}
+GERRIT_BRANCH=""
+#if [[ -n "$CONTRAIL_BRANCH" ]] ; then
+#  # reset branch to master if no such branch in vnc: openshift-ansible,
+#  # contrail-tripleo-puppet, contrail-trieplo-heat-templates do not
+#  # depend on contrail branch and are openstack depended.
+#  if ! curl -s https://gerrit.mcp.mirantis.com/projects/tungsten%2Fcontrail-vnc/branches | grep '"ref"' | grep -q "${CONTRAIL_BRANCH}" ; then
+#    if ! curl -s https://gerrit.mcp.mirantis.com/changes/?q=project:tungsten%2Fcontrail-vnc | grep _number | grep -q "$(echo $GERRIT_BRANCH | awk -F '/' '{print $(NF-1)}')" ; then
+#      echo "Ther is no $CONTRAIL_BRANCH branch in contrail-vnc, use master for vnc"
+#      CONTRAIL_BRANCH="master"
+#      GERRIT_BRANCH=""
+#    fi
+#  fi
+#fi
 
 REPO_INIT_MANIFEST_BRANCH=${REPO_INIT_MANIFEST_BRANCH:-${CONTRAIL_BRANCH}}
 REPO_INIT_OPTS=${REPO_INIT_OPTS:-${repo_init_defauilts}}
