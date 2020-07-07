@@ -27,8 +27,8 @@ if [[ "$stage" == 'upload' ]]; then
   # Pushes devenv (or potentially other containers) to external registry
   echo "INFO: pushing devenv to container registry"
   sudo docker stop ${DEVENV_CONTAINER_NAME}
-  sudo docker commit ${DEVENV_CONTAINER_NAME} ${CONTAINER_REGISTRY}/${DEVENV_IMAGE_NAME}:${DEVENV_PUSH_TAG}
-  sudo docker push ${CONTAINER_REGISTRY}/${DEVENV_IMAGE_NAME}:${DEVENV_PUSH_TAG}
+  sudo docker commit ${DEVENV_CONTAINER_NAME} ${DEVENV_CONTAINER_REGISTRY}/${DEVENV_IMAGE_NAME}:${DEVENV_PUSH_TAG}
+  sudo docker push ${DEVENV_CONTAINER_REGISTRY}/${DEVENV_IMAGE_NAME}:${DEVENV_PUSH_TAG}
   exit 0
 fi
 
@@ -67,8 +67,8 @@ cp -f ${scriptdir}/tpc.repo ${scriptdir}/config/etc/yum.repos.d/
 echo
 echo '[environment setup]'
 if ! is_container_created "$DEVENV_CONTAINER_NAME"; then
-  if [[ "$BUILD_DEV_ENV" != '1' ]] && ! is_container_created ${CONTAINER_REGISTRY}/$DEVENV_IMAGE ; then
-    if ! mysudo docker inspect ${CONTAINER_REGISTRY}/$DEVENV_IMAGE >/dev/null 2>&1 && ! mysudo docker pull ${CONTAINER_REGISTRY}/$DEVENV_IMAGE ; then
+  if [[ "$BUILD_DEV_ENV" != '1' ]] && ! is_container_created ${DEVENV_CONTAINER_REGISTRY}/$DEVENV_IMAGE ; then
+    if ! mysudo docker inspect ${DEVENV_CONTAINER_REGISTRY}/$DEVENV_IMAGE >/dev/null 2>&1 && ! mysudo docker pull ${DEVENV_CONTAINER_REGISTRY}/$DEVENV_IMAGE ; then
       if [[ "$BUILD_DEV_ENV_ON_PULL_FAIL" != '1' ]]; then
         exit 1
       fi
@@ -122,7 +122,7 @@ if ! is_container_created "$DEVENV_CONTAINER_NAME"; then
     --name $DEVENV_CONTAINER_NAME \
     -w /$DEVENV_USER ${options} \
     $volumes -it \
-    ${CONTAINER_REGISTRY}/${DEVENV_IMAGE}"
+    ${DEVENV_CONTAINER_REGISTRY}/${DEVENV_IMAGE}"
 
   echo "INFO: start cmd '$start_sandbox_cmd'"
   eval $start_sandbox_cmd 2>&1 | tee ${log_path}
